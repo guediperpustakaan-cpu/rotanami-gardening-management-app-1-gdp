@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-manrope), ui-sans-serif, sans-serif;
+
+  /* Permukaan hangat terinspirasi kertas & tanah */
+  --color-paper: #f4f1e7;
+  --color-cream: #fcfbf5;
+  --color-line: #e0dbc8;
+  --color-line-strong: #c9c2a8;
+
+  /* Teks */
+  --color-ink: #23291c;
+  --color-ink-soft: #5b6150;
+  --color-ink-faint: #82886f;
+
+  /* Hijau daun (primer) */
+  --color-moss-50: #f2f5e6;
+  --color-moss-100: #e5ecd0;
+  --color-moss-200: #cbd9a8;
+  --color-moss-300: #aac07c;
+  --color-moss-400: #8aa757;
+  --color-moss-500: #6d8c3e;
+  --color-moss-600: #547130;
+  --color-moss-700: #425a27;
+  --color-moss-800: #36491f;
+  --color-moss-900: #2b3a1c;
+
+  /* Tanah liat (aksen / bahaya) */
+  --color-clay-100: #f7e5d8;
+  --color-clay-500: #bf5f33;
+  --color-clay-600: #a44c26;
+  --color-clay-700: #863c1e;
+
+  /* Bahaya semantik */
+  --color-danger-100: #f8e0da;
+  --color-danger-600: #ad3a26;
+  --color-danger-700: #8d2e1e;
+
+  /* Peringatan semantik (matahari) */
+  --color-sun-100: #faeecb;
+  --color-sun-600: #a97a12;
+  --color-sun-700: #85600f;
+
+  --shadow-card: 0 1px 2px rgb(35 41 28 / 0.06), 0 4px 14px rgb(35 41 28 / 0.05);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fokus terlihat jelas untuk navigasi keyboard */
+:focus-visible {
+  outline: 3px solid var(--color-moss-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--color-moss-200);
+}
+
+/* Tekstur halus pada latar */
+.bg-texture {
+  background-image: radial-gradient(rgb(35 41 28 / 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
