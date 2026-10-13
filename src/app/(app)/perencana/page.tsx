@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -57,7 +57,11 @@ function PlannerInner() {
     queryFn: () => apiFetch<{ plans: RotationPlan[] }>(`/api/rotation-plans?farmId=${farmId}`),
   });
 
-  const [plotId, setPlotId] = useState<string>("");
+  const initialPlot = (() => {
+    const fromUrl = searchParams.get("petak");
+    return fromUrl && /^\d+$/.test(fromUrl) ? fromUrl : "";
+  })();
+  const [plotId, setPlotId] = useState<string>(initialPlot);
   const [suggesting, setSuggesting] = useState(false);
   const [suggestion, setSuggestion] = useState<SuggestionResponse | null>(null);
   const [suggestError, setSuggestError] = useState<string | null>(null);
@@ -69,11 +73,6 @@ function PlannerInner() {
     rationale: { source: string; context: string[]; reasons: string[]; disclaimer?: string } | null;
   }>({ rationale: null });
   const [deletePlan, setDeletePlan] = useState<RotationPlan | null>(null);
-
-  useEffect(() => {
-    const fromUrl = searchParams.get("petak");
-    if (fromUrl && /^\d+$/.test(fromUrl)) setPlotId(fromUrl);
-  }, [searchParams]);
 
   async function requestSuggestion() {
     setSuggestError(null);

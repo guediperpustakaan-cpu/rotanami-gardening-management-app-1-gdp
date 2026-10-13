@@ -321,15 +321,17 @@ export function ConfirmDialog({
   loading?: boolean;
 }) {
   const [typed, setTyped] = useState("");
-  useEffect(() => {
-    if (!open) setTyped("");
-  }, [open]);
   const blocked = Boolean(requireText) && typed !== requireText;
+
+  function handleClose() {
+    setTyped("");
+    onClose();
+  }
 
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={title}
       footer={
         <>

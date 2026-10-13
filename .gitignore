@@ -1,0 +1,22 @@
+node_modules
+
+# Rahasia lokal — jangan di-commit (atur DATABASE_URL di dashboard Vercel)
+.env
+.env.*
+!.env.example
+
+# Artefak build
+.next
+out
+dist
+build
+*.tsbuildinfo
+
+# Drizzle cache
+drizzle/meta
+
+# Sistem & editor
+.DS_Store
+Thumbs.db
+.vscode
+.idea

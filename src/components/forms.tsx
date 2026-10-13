@@ -119,7 +119,6 @@ export function PlotFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         name: plot?.name ?? "",
         size: plot?.size ?? undefined,
@@ -129,6 +128,11 @@ export function PlotFormModal({
       });
     }
   }, [open, plot, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: PlotFormOutput) {
     setRootError(null);
@@ -149,11 +153,11 @@ export function PlotFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={plot ? "Ubah petak" : "Tambah petak"}
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {plot ? "Simpan perubahan" : "Tambah petak"}
           </Button>
@@ -237,7 +241,6 @@ export function PlantingFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         plotId: planting?.plotId ?? fixedPlotId ?? 0,
         cropId: planting?.cropId ?? 0,
@@ -251,6 +254,11 @@ export function PlantingFormModal({
       });
     }
   }, [open, planting, fixedPlotId, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   const status = watch("status");
 
@@ -273,12 +281,12 @@ export function PlantingFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={planting ? "Ubah catatan tanam" : "Catat tanaman"}
       wide
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {planting ? "Simpan perubahan" : "Simpan catatan"}
           </Button>
@@ -372,7 +380,6 @@ export function SoilTestFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         testDate: test?.testDate ?? todayISO(),
         ph: test?.ph ?? undefined,
@@ -385,6 +392,11 @@ export function SoilTestFormModal({
       });
     }
   }, [open, test, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: SoilFormOutput) {
     setRootError(null);
@@ -404,12 +416,12 @@ export function SoilTestFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={test ? "Ubah hasil uji tanah" : "Catat hasil uji tanah"}
       wide
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {test ? "Simpan perubahan" : "Simpan hasil uji"}
           </Button>
@@ -487,7 +499,6 @@ export function ObservationFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         category: observation?.category ?? "lainnya",
         obsDate: observation?.obsDate ?? todayISO(),
@@ -496,6 +507,11 @@ export function ObservationFormModal({
       });
     }
   }, [open, observation, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: ObsFormOutput) {
     setRootError(null);
@@ -515,11 +531,11 @@ export function ObservationFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={observation ? "Ubah observasi" : "Catat observasi"}
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {observation ? "Simpan perubahan" : "Simpan observasi"}
           </Button>
@@ -594,7 +610,6 @@ export function ReminderFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         title: reminder?.title ?? "",
         dueDate: reminder?.dueDate ?? todayISO(),
@@ -603,6 +618,11 @@ export function ReminderFormModal({
       });
     }
   }, [open, reminder, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: ReminderFormOutput) {
     setRootError(null);
@@ -623,11 +643,11 @@ export function ReminderFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={reminder ? "Ubah pengingat" : "Buat pengingat"}
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {reminder ? "Simpan perubahan" : "Simpan pengingat"}
           </Button>
@@ -698,10 +718,6 @@ export function CropFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
-      setNewFamilyMode(false);
-      setNewFamilyName("");
-      setNewFamilyGroup("");
       reset({
         name: crop?.name ?? "",
         scientificName: crop?.scientificName ?? undefined,
@@ -712,6 +728,14 @@ export function CropFormModal({
       });
     }
   }, [open, crop, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    setNewFamilyMode(false);
+    setNewFamilyName("");
+    setNewFamilyGroup("");
+    onClose();
+  }
 
   async function submit(values: CropFormOutput) {
     setRootError(null);
@@ -740,12 +764,12 @@ export function CropFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title={crop ? "Ubah tanaman" : "Tambah tanaman ke katalog"}
       wide
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>
             {crop ? "Simpan perubahan" : "Tambah tanaman"}
           </Button>
@@ -857,10 +881,14 @@ export function SeasonFormModal({ open, onClose }: { open: boolean; onClose: () 
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({ name: "", startDate: todayISO(), endDate: todayISO() });
     }
   }, [open, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: SeasonFormOutput) {
     setRootError(null);
@@ -877,11 +905,11 @@ export function SeasonFormModal({ open, onClose }: { open: boolean; onClose: () 
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title="Tambah musim tanam"
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>Simpan musim</Button>
         </>
       }
@@ -949,7 +977,6 @@ export function PlanFormModal({
 
   useEffect(() => {
     if (open) {
-      setRootError(null);
       reset({
         plotId: defaultPlotId ?? 0,
         cropId: defaultCropId ?? 0,
@@ -960,6 +987,11 @@ export function PlanFormModal({
       });
     }
   }, [open, defaultPlotId, defaultCropId, reset]);
+
+  function handleClose() {
+    setRootError(null);
+    onClose();
+  }
 
   async function submit(values: PlanFormOutput) {
     setRootError(null);
@@ -975,12 +1007,12 @@ export function PlanFormModal({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       title="Simpan rencana rotasi"
       wide
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>Batal</Button>
+          <Button variant="secondary" onClick={handleClose}>Batal</Button>
           <Button type="submit" form={formId} loading={formState.isSubmitting}>Simpan rencana</Button>
         </>
       }
