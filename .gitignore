@@ -15,6 +15,9 @@ build
 # Drizzle cache
 drizzle/meta
 
+# Zip source code yang dihasilkan scripts/pack-source.ts
+public/rotanami-source-code.zip
+
 # Sistem & editor
 .DS_Store
 Thumbs.db

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { TrakteerWidget } from "@/components/trakteer-widget";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id" className={`${manrope.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-paper text-ink antialiased">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <TrakteerWidget />
+        </Providers>
       </body>
     </html>
   );

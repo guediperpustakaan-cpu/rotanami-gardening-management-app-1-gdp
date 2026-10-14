@@ -15,6 +15,9 @@ kebun komunitas, dan petani skala kecil dalam:
 > nama ini unik secara global, bebas merek dagang, atau tersedia sebagai domain. Semua identitas
 > visual dibuat orisinal dan tidak memakai aset merek lain.
 
+**Open Source oleh MZF — 2026** — bebas dipakai, dipelajari, dan dikembangkan. Lihat bagian
+[Lisensi](#lisensi) di akhir dokumen ini.
+
 ## Adaptasi teknologi pada lingkungan ini
 
 Spesifikasi awal menyebut React + Vite + Express. Lingkungan eksekusi proyek ini menyediakan stack
@@ -52,6 +55,11 @@ full-stack **Next.js (App Router) + Node.js/TypeScript + PostgreSQL + Drizzle OR
 10. Ekspor **CSV** untuk riwayat tanam dan hasil uji tanah (PDF sengaja tidak disediakan agar tidak
     ada tombol yang tidak berfungsi).
 11. Loading state, error state (pesan Indonesia ramah), empty state, dan toast sukses/gagal.
+12. **Widget Trakteer** — tombol mengambang "Traktir kopi" di sudut kanan bawah. Saat diklik,
+    muncul pilihan nominal traktiran (mulai Rp6.000 dan kelipatannya) beserta QR Code yang
+    ditampilkan langsung di dalam aplikasi — pengguna tidak perlu pindah halaman.
+13. **Unduh source code lengkap** — tersedia tombol di dalam widget Trakteer (dan dapat diakses
+    langsung di `/rotanami-source-code.zip`) untuk mengunduh seluruh kode aplikasi dalam bentuk ZIP.
 
 ## Keterbatasan
 
@@ -60,6 +68,39 @@ full-stack **Next.js (App Router) + Node.js/TypeScript + PostgreSQL + Drizzle OR
 - Kolom `farm_members` tersedia di skema; undangan anggota lewat UI belum dibuat (peran pemilik
   sudah diterapkan pada otorisasi).
 - Ekspor baru tersedia dalam CSV.
+
+## Dukung proyek ini (Trakteer) ☕
+
+Aplikasi ini **gratis dan bebas iklan** untuk siapa saja. Untuk menjaga server dan pengembangan
+tetap berjalan, sediakan widget **Trakteer** di sudut kanan bawah layar.
+
+- **Cara pakai**: klik tombol mengambang bertuliskan "Traktir kopi".
+- Pilih nominal traktiran (Rp6.000, Rp12.000, Rp18.000, Rp24.000, Rp36.000, atau Rp60.000),
+  lalu pindai QR Code yang muncul dengan kamera ponsel, atau
+- klik tombol "Traktir via Trakteer" untuk membuka halaman
+  <https://trakteer.id/perpus_opera/> langsung.
+
+Pesan di widget: *"Web app ini gratis & bebas iklan. Kopi kecil, server tetap jalan."*
+
+Widget ini muncul di semua halaman dan tidak melacak data pengguna apa pun.
+
+## Mengunduh source code 📦
+
+Seluruh kode aplikasi dapat diunduh langsung dari dalam aplikasi:
+
+1. Klik widget **Traktir kopi** di sudut kanan bawah, lalu pilih **"Unduh source code lengkap"**; atau
+2. Buka langsung path `/rotanami-source-code.zip` pada aplikasi yang sudah di-deploy.
+
+File ZIP dibuat otomatis saat proses build melalui `npm run prebuild`
+(script `scripts/pack-source.ts`). ZIP berisi seluruh berkas proyek (folder `src/`,
+`scripts/`, konfigurasi, dokumentasi, dan migrasi SQL), **tanpa** `node_modules`, `.next`, `.git`,
+`.env`, atau folder internal lainnya.
+
+Untuk membuat ZIP secara manual:
+
+```bash
+npm run pack-source
+```
 
 ## Prasyarat
 
@@ -169,3 +210,18 @@ Semua endpoint memvalidasi input dengan Zod dan memeriksa akses pengguna ke kebu
 | `GET /api/calendar?farmId=&month=`  | Agenda per bulan                         |
 | `GET /api/export/plantings`         | Ekspor CSV riwayat tanam                 |
 | `GET /api/export/soil-tests`        | Ekspor CSV hasil uji tanah               |
+| `GET /rotanami-source-code.zip`     | Unduh source code lengkap (ZIP)          |
+
+## Lisensi
+
+Hak cipta © 2026 **MZF**.
+
+Proyek ini bersifat **open source** dan bebas digunakan, dipelajari, dimodifikasi, dan
+didistribusikan ulang untuk kepentingan apa pun — termasuk penggunaan komersial — tanpa biaya,
+tanpa iklan, dan tanpa syarat atribusi wajib.
+
+Diberikan "sebagaimana adanya" tanpa jaminan dalam bentuk apa pun. Penulis tidak bertanggung jawab
+atas kerugian yang timbul dari penggunaan aplikasi ini. Saran agronomi yang dihasilkan aplikasi
+bersifat panduan umum, bukan diagnosis atau rekomendasi presisi.
+
+**Open Source oleh MZF — 2026** 🌱
